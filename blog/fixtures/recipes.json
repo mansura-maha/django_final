@@ -1,0 +1,26 @@
+[
+  {
+    "model": "blog.blog",
+    "pk": 1,
+    "fields": {
+      "title": "Spicy Chicken Curry",
+      "author": 1,
+      "category": "Desi",
+      "body": "A traditional desi chicken curry.",
+      "created_at": "2025-08-30T12:00:00Z",
+      "updated_at": "2025-08-30T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 2,
+    "fields": {
+      "title": "Classic Cheeseburger",
+      "author": 1,
+      "category": "American",
+      "body": "Juicy burger with cheese and lettuce.",
+      "created_at": "2025-08-30T12:10:00Z",
+      "updated_at": "2025-08-30T12:10:00Z"
+    }
+  }
+]

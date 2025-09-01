@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    <img src="{{ author.profile_pic.url }}" alt="Profile Pic" class="img-fluid rounded mb-3">
+    <h3>{{ author.user.username }}</h3>
+    <p>{{ author.bio }}</p>
+    {% if author.social_link %}
+    <p><a href="{{ author.social_link }}" target="_blank">Social Link</a></p>
+    {% endif %}
+  </div>
+  <div class="col-md-8">
+    <h4>Blogs by {{ author.user.username }}</h4>
+    {% for blog in blogs %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ blog.title }}</h5>
+          <p class="card-text">{{ blog.body|truncatewords:15 }}</p>
+          <a href="{% url 'blog_detail' blog.id %}" class="btn btn-custom btn-sm">Read More</a>
+        </div>
+      </div>
+    {% empty %}
+      <p>No blogs published yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<h1 class="mb-4">Latest Recipes</h1>
+
+<!-- Search & Filters -->
+<form method="get" class="row mb-4 g-2">
+  <div class="col-md-3">
+    <input type="text" name="search" placeholder="Search blogs..." class="form-control" value="{{ request.GET.search }}">
+  </div>
+  <div class="col-md-3">
+    <select name="category" class="form-select">
+      <option value="All">All Categories</option>
+      {% for cat in categories %}
+      <option value="{{ cat }}" {% if request.GET.category == cat %}selected{% endif %}>{{ cat }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-3">
+    <select name="author" class="form-select">
+      <option value="All">All Authors</option>
+      {% for author in authors %}
+      <option value="{{ author.user.id }}" {% if request.GET.author == author.user.id|stringformat:"s" %}selected{% endif %}>{{ author.user.username }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-2">
+    <input type="date" name="date" class="form-control" value="{{ request.GET.date }}">
+  </div>
+  <div class="col-md-1">
+    <button type="submit" class="btn btn-custom w-100">Filter</button>
+  </div>
+</form>
+
+<!-- Blog List -->
+<div class="row">
+  {% for blog in blogs %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ blog.title }}</h5>
+        <p class="card-text">{{ blog.body|truncatewords:20 }}</p>
+        <p class="text-muted">
+          Category: {{ blog.category }} | By: 
+          <a href="{% url 'author_detail' blog.author.profile.id %}">{{ blog.author.username }}</a>
+        </p>
+        <p>Rating: {{ blog.avg_rating|floatformat:1 }}/6</p>
+        <a href="{% url 'blog_detail' blog.id %}" class="btn btn-custom">Read More</a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p>No blogs found matching your criteria.</p>
+  {% endfor %}
+</div>
+{% endblock %}

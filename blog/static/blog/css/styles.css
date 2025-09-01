@@ -1,0 +1,38 @@
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #555555;
+}
+
+.btn-custom {
+    background-color: #808080;
+    color: #000;
+    border-radius: 5px;
+}
+
+.btn-custom:hover {
+    background-color: #4d4d4d;
+    color: #fff;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+footer {
+    margin-top: 50px;
+}

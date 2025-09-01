@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h2>{{ blog.title }}</h2>
+    <p class="text-muted">
+      Category: {{ blog.category }} | By: 
+      <a href="{% url 'author_detail' blog.author.profile.id %}">{{ blog.author.username }}</a> | 
+      Created: {{ blog.created_at|date:"M d, Y" }}
+    </p>
+    <hr>
+    <p>{{ blog.body }}</p>
+    <hr>
+    <p>Average Rating: {{ avg_rating|floatformat:1 }}/6</p>
+
+    {% if user.is_authenticated %}
+      <form action="{% url 'add_favorite' blog.id %}" method="post" style="display:inline-block;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-custom">Add to Favorites</button>
+      </form>
+
+      <form action="{% url 'add_rating' blog.id %}" method="post" class="mt-2">
+        {% csrf_token %}
+        {{ rating_form.value.label_tag }} {{ rating_form.value }}
+        <button type="submit" class="btn btn-custom btn-sm">Rate</button>
+      </form>
+    {% else %}
+      <p class="mt-2"><a href="{% url 'login' %}">Login</a> to add to favorites or rate</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
