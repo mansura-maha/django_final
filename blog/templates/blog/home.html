@@ -2,7 +2,6 @@
 {% block content %}
 <h1 class="mb-4">Latest Recipes</h1>
 
-<!-- Search & Filters -->
 <form method="get" class="row mb-4 g-2">
   <div class="col-md-3">
     <input type="text" name="search" placeholder="Search blogs..." class="form-control" value="{{ request.GET.search }}">
@@ -31,7 +30,6 @@
   </div>
 </form>
 
-<!-- Blog List -->
 <div class="row">
   {% for blog in blogs %}
   <div class="col-md-4 mb-4">

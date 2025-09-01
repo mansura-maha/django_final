@@ -44,7 +44,7 @@ class Favorite(models.Model):
 class Rating(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    value = models.IntegerField()  # 0-6
+    value = models.IntegerField()  
 
     def __str__(self):
         return f"{self.user.username} rated {self.blog.title} as {self.value}"
