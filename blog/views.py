@@ -35,7 +35,6 @@ def home(request):
         'categories': categories,
     })
 
-
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
